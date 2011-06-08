@@ -82,7 +82,7 @@ Enter Panoramic gem path, run ```bundle install``` to install development and te
 Fork, make your changes, then send a pull request.
 
 ## Credits
-Some parts of this code are *heavily inspired* from José Valim's awesome book [Crafting Rails Applications]. It helped me to better understand some Rails internals.
+The main idea was *heavily inspired* from José Valim's awesome book [Crafting Rails Applications]. It helped me to better understand some Rails internals.
 
 [ActionView::Resolver]: http://api.rubyonrails.org/classes/ActionView/Resolver.html
 [append_view_path]: http://apidock.com/rails/AbstractController/ViewPaths/ClassMethods/append_view_path
