@@ -7,7 +7,7 @@ An [ActionView::Resolver] implementation to store rails views (layouts, template
 Add the following line to Gemfile:
 
 ```
-gem database_templates
+gem "panoramic", "~> 0.0.2"
 ```
 
 ## Usage
@@ -23,6 +23,7 @@ Your model should have the following fields:
   (erb, haml, etc...)
 * partial (boolean): determines if it's a partial or not (false by
   default)
+* format (string): A valid mimetype from Mime::SET.symbols
 
 they're what the rails' Resolver API needs to lookup templates.
 
