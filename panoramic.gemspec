@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{Stores rails views on database}
   s.description = %q{Stores rails views on database}
 
-  s.add_dependency 'rails', "~> 3.0.7"
+  s.add_dependency 'rails', ">= 3.0.7"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
