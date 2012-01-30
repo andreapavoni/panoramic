@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe FooController do
-  include Capybara
+  include Capybara::DSL
   render_views
 
   context "renders views fetched from database with" do
