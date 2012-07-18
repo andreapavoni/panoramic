@@ -47,6 +47,10 @@ describe Panoramic::Orm::ActiveRecord do
   end
 
   context "cache" do
+    before do
+      DatabaseTemplate.delete_all
+    end
+
     it "is expired on update" do
       resolver = DatabaseTemplate.resolver
 
