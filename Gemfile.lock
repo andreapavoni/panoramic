@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    panoramic (0.0.3)
+    panoramic (0.0.4)
       rails (>= 3.0.7)
 
 GEM
