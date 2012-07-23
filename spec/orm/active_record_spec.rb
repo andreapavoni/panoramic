@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Panoramic::Orm::ActiveRecord do
   context "validations" do
-    let(:template) { Factory.build :database_template } 
+    let(:template) { FactoryGirl.build :database_template }
 
     it "has body present" do
       template.body = nil
@@ -13,7 +13,7 @@ describe Panoramic::Orm::ActiveRecord do
       it "is valid" do
         template.format = 'notknown'
         template.should have(1).errors_on(:format)
-      end    
+      end
 
       it "is present" do
         template.format = nil
@@ -55,7 +55,7 @@ describe Panoramic::Orm::ActiveRecord do
       resolver = DatabaseTemplate.resolver
 
       cache_key = Object.new
-      db_template = Factory.create(:database_template, :path => 'foo/some_list', :body => 'Listing something')
+      db_template = FactoryGirl.create(:database_template, :path => 'foo/some_list', :body => 'Listing something')
 
       details   = { :formats => [:html], :locale => [:en], :handlers => [:erb] }
 
