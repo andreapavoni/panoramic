@@ -20,8 +20,8 @@ module Panoramic
           self.where(conditions)
         end
 
-        def resolver
-          Panoramic::Resolver.using self
+        def resolver(options={})
+          Panoramic::Resolver.using self, options
         end
       end
     end
