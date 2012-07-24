@@ -1,4 +1,4 @@
-# Panoramic
+# Panoramic [![Build Status](https://secure.travis-ci.org/apeacox/panoramic.png)](http://travis-ci.org/apeacox/panoramic)
 An [ActionView::Resolver] implementation to store rails views (layouts, templates and partials) on database. Simply put: what you can do with views on filesystem, can be done on database.
 
 **NOTE:** at the moment, only ActiveRecord is supported, I've planned to add more ORMs (see Todo). If you can't wait, adding other ORMs should be very trivial.
@@ -6,8 +6,8 @@ An [ActionView::Resolver] implementation to store rails views (layouts, template
 ## Installation
 Add the following line to Gemfile:
 
-```
-gem "panoramic", "~> 0.0.3"
+```ruby
+gem "panoramic"
 ```
 
 ## Usage
@@ -30,7 +30,7 @@ they're what the rails' Resolver API needs to lookup templates.
 ### Model
 A simple macro in model will activate your new Resolver. You can use a dedicated model to manage all the views in your app, or just for specific needs (ex: you want a custom template for some static pages, the other views will be fetched from filesystem).
 
-```
+```ruby
 class TemplateStorage < ActiveRecord::Base
   store_templates
 end
@@ -45,7 +45,7 @@ To add Panoramic::Resolver in controller, depending on your needs, you may choos
 **NOTE**: the above methods are both class and instance methods.
 
 
-```
+```ruby
 class SomeController < ApplicationController
   prepend_view_path TemplateStorage.resolver
 
