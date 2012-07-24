@@ -1,8 +1,11 @@
-Factory.define :database_template do |t|
-  t.path    'foo/index'
-  t.format  'html'
-  t.locale  'en'
-  t.handler 'erb'
-  t.partial 'false'
-  t.body    "something here in the body of the page: <%= 2 + 2 %>"
+# FactoryGirl.define :database_template do |t|
+FactoryGirl.define do
+  factory :database_template do
+    path    'foo/index'
+    format  'html'
+    locale  'en'
+    handler 'erb'
+    partial 'false'
+    body    "something here in the body of the page: <%= 2 + 2 %>"
+  end
 end
