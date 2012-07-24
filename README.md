@@ -65,6 +65,19 @@ class SomeController < ApplicationController
 end
 ```
 
+And let's say you want to use database template resolving in all your controllers, but
+want to use panoramic only for certain paths (prefixed with X) you can use
+
+```ruby
+class ApplicationController < ActionController::Base
+  prepend_view_path TemplateStorage.resolver(:only => 'use_this_prefix_only')
+end
+```
+
+This helps reducing the number of database requests, if Rails for example tries to look
+for layouts per controller.
+
+
 ## Documentation
 Need more help? Check out ```spec/dummy/```, you'll find a *dummy* rails app I used to make tests ;-)
 
