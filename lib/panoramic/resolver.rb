@@ -5,6 +5,8 @@ module Panoramic
 
     # this method is mandatory to implement a Resolver
     def find_templates(name, prefix, partial, details)
+      return [] if @@resolver_options[:only] && !@@resolver_options[:only].include?(prefix)
+
       conditions = {
         :path    => build_path(name, prefix),
         :locale  => normalize_array(details[:locale]).first,
@@ -19,8 +21,9 @@ module Panoramic
     end
 
     # Instantiate Resolver by passing a model (decoupled from ORMs)
-    def self.using(model)
+    def self.using(model, options={})
       @@model = model
+      @@resolver_options = options
       self.instance
     end
 
