@@ -18,7 +18,7 @@ Your model should have the following fields:
 * body (text): the source of template
 * path (string): where to find template (ex: layouts/application,
   you_controller/action, etc...)
-* locale (string): it depends from avaiable locales in your app
+* locale (string): it depends from available locales in your app
 * handler (string): as locale field, it depends from avaiable handlers
   (erb, haml, etc...)
 * partial (boolean): determines if it's a partial or not (false by
