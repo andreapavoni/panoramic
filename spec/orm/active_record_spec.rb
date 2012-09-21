@@ -1,30 +1,25 @@
 require 'spec_helper'
 
-describe Panoramic::Orm::ActiveRecord do
-  context "validations" do
-    let(:template) { FactoryGirl.build :database_template }
+if defined? ActiveRecord
+  describe Panoramic::Orm::ActiveRecord do
+    context "validations" do
+      let(:template) { FactoryGirl.build :database_template }
 
-    it "has body present" do
-      template.body = nil
-      template.should have(1).errors_on(:body)
-    end
-
-    context "MIME format" do
-      it "is valid" do
-        template.format = 'notknown'
-        template.should have(1).errors_on(:format)
+      it "has body present" do
+        template.body = nil
+        template.should have(1).errors_on(:body)
       end
 
-      it "is present" do
-        template.format = nil
-        template.should have(1).errors_on(:format)
-      end
-    end
+      context "MIME format" do
+        it "is valid" do
+          template.format = 'notknown'
+          template.should have(1).errors_on(:format)
+        end
 
-    context "locale" do
-      it "is valid" do
-        template.locale = 'notknown'
-        template.should have(1).errors_on(:locale)
+        it "is present" do
+          template.format = nil
+          template.should have(1).errors_on(:format)
+        end
       end
 
       it "is present" do
@@ -33,51 +28,58 @@ describe Panoramic::Orm::ActiveRecord do
       end
     end
 
-    context "handler" do
-      it "is valid" do
-        template.handler = 'notknown'
-        template.should have(1).errors_on(:handler)
+        it "is present" do
+          template.locale = nil
+          template.should have(1).errors_on(:locale)
+        end
       end
 
-      it "is present" do
-        template.handler = nil
-        template.should have(1).errors_on(:handler)
+      context "handler" do
+        it "is valid" do
+          template.handler = 'notknown'
+          template.should have(1).errors_on(:handler)
+        end
+
+        it "is present" do
+          template.handler = nil
+          template.should have(1).errors_on(:handler)
+        end
       end
     end
-  end
 
-  context "cache" do
-    before do
-      DatabaseTemplate.delete_all
+    context "cache" do
+      before do
+        DatabaseTemplate.delete_all
+      end
+
+      it "is expired on update" do
+        resolver = DatabaseTemplate.resolver
+
+        cache_key = Object.new
+        db_template = FactoryGirl.create(:database_template, :path => 'foo/some_list', :body => 'Listing something')
+
+        details   = { :formats => [:html], :locale => [:en], :handlers => [:erb] }
+
+        template = resolver.find_all("some_list", "foo", false, details, cache_key).first
+        template.source.should match(/Listing something/)
+
+        db_template.update_attributes(:body => "New body for template")
+
+        template = resolver.find_all("some_list", "foo", false, details, cache_key).first
+        template.source.should match(/New body for template/)
+      end
     end
 
-    it "is expired on update" do
-      resolver = DatabaseTemplate.resolver
-
-      cache_key = Object.new
-      db_template = FactoryGirl.create(:database_template, :path => 'foo/some_list', :body => 'Listing something')
-
-      details   = { :formats => [:html], :locale => [:en], :handlers => [:erb] }
-
-      template = resolver.find_all("some_list", "foo", false, details, cache_key).first
-      template.source.should match(/Listing something/)
-
-      db_template.update_attributes(:body => "New body for template")
-
-      template = resolver.find_all("some_list", "foo", false, details, cache_key).first
-      template.source.should match(/New body for template/)
+    context "#resolver" do
+      it "#returns a Resolver instance" do
+        DatabaseTemplate.resolver.should be_a(Panoramic::Resolver)
+      end
     end
-  end
 
-  context "#resolver" do
-    it "#returns a Resolver instance" do
-      DatabaseTemplate.resolver.should be_a(Panoramic::Resolver)
-    end
-  end
-
-  context "ActiveRecord::Base" do
-    it "responds to store_templates" do
-      ActiveRecord::Base.should respond_to(:store_templates)
+    context "ActiveRecord::Base" do
+      it "responds to store_templates" do
+        ActiveRecord::Base.should respond_to(:store_templates)
+      end
     end
   end
 end
