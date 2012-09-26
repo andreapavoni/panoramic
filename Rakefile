@@ -26,7 +26,7 @@ namespace :spec do
 
   desc "Run Tests against all ORMs"
   task :all do
-    %w(active_record).each do |gemfile|
+    %w(active_record mongoid).each do |gemfile|
       sh "BUNDLE_GEMFILE='gemfiles/#{gemfile}.gemfile' bundle --quiet"
       sh "BUNDLE_GEMFILE='gemfiles/#{gemfile}.gemfile' bundle exec rake spec"
     end
