@@ -13,22 +13,21 @@ require 'rspec/core/rake_task'
 Bundler::GemHelper.install_tasks
 RSpec::Core::RakeTask.new(:spec)
 
+ORMS = %w(active_record mongoid)
+
 task :default => "spec:all"
 
 namespace :spec do
-  %w(active_record mongoid).each do |gemfile|
-    desc "Run Tests against #{gemfile}"
-    task gemfile do
-      sh "BUNDLE_GEMFILE='gemfiles/#{gemfile}.gemfile' bundle --quiet"
-      sh "BUNDLE_GEMFILE='gemfiles/#{gemfile}.gemfile' bundle exec rake -t spec"
+  ORMS.each do |orm|
+    desc "Run Tests against #{orm}"
+    task orm do
+      sh "BUNDLE_GEMFILE='gemfiles/#{orm}.gemfile' bundle --quiet"
+      sh "BUNDLE_GEMFILE='gemfiles/#{orm}.gemfile' bundle exec rake -t spec"
     end
   end
 
   desc "Run Tests against all ORMs"
   task :all do
-    %w(active_record mongoid).each do |gemfile|
-      sh "BUNDLE_GEMFILE='gemfiles/#{gemfile}.gemfile' bundle --quiet"
-      sh "BUNDLE_GEMFILE='gemfiles/#{gemfile}.gemfile' bundle exec rake spec"
-    end
+    ORMS.each { |orm| Rake::Task["spec:#{orm}"].invoke }
   end
 end
