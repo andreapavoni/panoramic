@@ -16,7 +16,7 @@ RSpec::Core::RakeTask.new(:spec)
 task :default => "spec:all"
 
 namespace :spec do
-  %w(active_record).each do |gemfile|
+  %w(active_record mongoid).each do |gemfile|
     desc "Run Tests against #{gemfile}"
     task gemfile do
       sh "BUNDLE_GEMFILE='gemfiles/#{gemfile}.gemfile' bundle --quiet"
