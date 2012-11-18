@@ -8,3 +8,4 @@ spec/dummy/tmp/
 coverage/*
 .rvmrc
 gemfiles/*.lock
+*.rdb

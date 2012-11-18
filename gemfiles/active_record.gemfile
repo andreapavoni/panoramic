@@ -1,5 +1,5 @@
 source :rubygems
 
-gem 'activerecord', '>= 3.2.8', :require => 'active_record'
+gem 'activerecord', '~> 3.2.8', :require => 'active_record'
 
 gemspec :path => '../'
