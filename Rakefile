@@ -22,7 +22,7 @@ namespace :spec do
     desc "Run Tests against #{orm}"
     task orm do
       sh "BUNDLE_GEMFILE='gemfiles/#{orm}.gemfile' bundle --quiet"
-      sh "BUNDLE_GEMFILE='gemfiles/#{orm}.gemfile' bundle exec rake -t spec"
+      sh "BUNDLE_GEMFILE='gemfiles/#{orm}.gemfile' bundle exec rake spec -t"
     end
   end
 
