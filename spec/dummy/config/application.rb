@@ -3,12 +3,12 @@ require File.expand_path('../boot', __FILE__)
 require "action_controller/railtie"
 require "action_view/railtie"
 require "action_mailer/railtie"
+require "active_model/railtie"
 
 Bundler.require
 require "panoramic"
 
 if defined? ActiveRecord
-  require "active_model/railtie"
   require "active_record/railtie"
 end
 
