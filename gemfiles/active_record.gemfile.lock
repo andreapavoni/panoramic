@@ -1,5 +1,5 @@
 PATH
-  remote: .
+  remote: /Users/alessio/projects/panoramic
   specs:
     panoramic (0.0.4)
       rails (>= 3.0.7)
@@ -139,11 +139,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord (>= 3.2.8)
   capybara (~> 1.1.2)
   factory_girl
   mongoid (~> 3.0.0)
   panoramic!
-  rake
   rspec-rails (~> 2.10.0)
   simplecov
   sqlite3

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-if defined? ActiveRecord
-  describe Panoramic::Orm::ActiveRecord do
+if defined? Mongoid
+  describe Panoramic::Orm::Mongoid do
     context "validations" do
       let(:template) { FactoryGirl.build :database_template }
 
@@ -73,12 +73,6 @@ if defined? ActiveRecord
     context "#resolver" do
       it "#returns a Resolver instance" do
         DatabaseTemplate.resolver.should be_a(Panoramic::Resolver)
-      end
-    end
-
-    context "ActiveRecord::Base" do
-      it "responds to store_templates" do
-        ActiveRecord::Base.should respond_to(:store_templates)
       end
     end
   end
