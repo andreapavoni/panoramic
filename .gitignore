@@ -7,4 +7,3 @@ spec/dummy/tmp/
 .rspec
 coverage/*
 .rvmrc
-gemfiles/*.lock
