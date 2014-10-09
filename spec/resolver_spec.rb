@@ -10,6 +10,12 @@ describe Panoramic::Resolver do
       resolver.find_templates('example', 'foo', false, details).first.should_not be_nil
     end
 
+    it "should lookup locale agnostic templates for given params" do
+      template = FactoryGirl.create(:database_template, :path => 'foo/example', locale: nil)
+      details = { :formats => [:html], :locale => [:en], :handlers => [:erb] }
+      resolver.find_templates('example', 'foo', false, details).first.should_not be_nil
+    end
+
     it "should lookup templates for given params and prefixes" do
       resolver = Panoramic::Resolver.using(DatabaseTemplate, :only => 'foo')
       details = { :formats => [:html], :locale => [:en], :handlers => [:erb] }

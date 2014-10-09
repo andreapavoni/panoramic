@@ -9,7 +9,7 @@ module Panoramic
 
       conditions = {
         :path    => build_path(name, prefix),
-        :locale  => normalize_array(details[:locale]).first,
+        :locale  => [normalize_array(details[:locale]).first, nil],
         :format  => normalize_array(details[:formats]).first,
         :handler => normalize_array(details[:handlers]),
         :partial => partial || false
@@ -53,7 +53,7 @@ module Panoramic
     def normalize_array(array)
       array.map(&:to_s)
     end
-    
+
     # returns a path depending if its a partial or template
     def virtual_path(path, partial)
       return path unless partial
