@@ -29,7 +29,7 @@ describe Panoramic::Orm::ActiveRecord do
 
       it "is present" do
         template.locale = nil
-        template.should have(1).errors_on(:locale)
+        template.should have(0).errors_on(:locale)
       end
     end
 
