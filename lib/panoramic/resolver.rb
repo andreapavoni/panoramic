@@ -10,7 +10,7 @@ module Panoramic
       conditions = {
         :path    => build_path(name, prefix),
         :locale  => [normalize_array(details[:locale]).first, nil],
-        :format  => normalize_array(details[:formats]).first,
+        :format  => normalize_array(details[:formats]),
         :handler => normalize_array(details[:handlers]),
         :partial => partial || false
       }
