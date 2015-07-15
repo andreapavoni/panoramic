@@ -7,5 +7,7 @@ spec/dummy/tmp/
 .rspec
 coverage/*
 .rvmrc
+.ruby-version
+.ruby-gemset
 gemfiles/*.lock
 *.rdb
