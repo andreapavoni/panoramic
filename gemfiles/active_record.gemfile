@@ -1,5 +1,8 @@
 source :rubygems
 
 gem 'activerecord', '~> 3.2.8', :require => 'active_record'
+gem 'test-unit', '~> 3.0'
+
+# gem "pry"
 
 gemspec :path => '../'
