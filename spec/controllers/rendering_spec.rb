@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe FooController do
+describe FooController, :type => :controller do
   include Capybara::DSL
   render_views
 
