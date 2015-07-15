@@ -22,15 +22,15 @@ if defined? ActiveRecord
         end
       end
 
-      it "is present" do
-        template.locale = nil
-        template.should have(0).errors_on(:locale)
-      end
-    end
-
-        it "is present" do
-          template.locale = nil
+      context "locale" do
+        it "is valid" do
+          template.locale = 'notknown'
           template.should have(1).errors_on(:locale)
+        end
+
+        it "does not need to be present" do
+          template.locale = nil
+          template.should have(0).errors_on(:locale)
         end
       end
 
