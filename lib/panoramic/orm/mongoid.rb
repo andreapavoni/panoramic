@@ -1,6 +1,6 @@
 module Panoramic
   module Orm
-    module Mongoid     
+    module Mongoid
       extend ActiveSupport::Concern
 
       included do
@@ -23,9 +23,10 @@ module Panoramic
       end
 
       module ClassMethods
-        def find_model_templates(conditions = {})          
-          conditions[:handler.in] = conditions.delete :handler          
-          self.where(conditions)
+        def find_model_templates(conditions = {})
+          conditions[:handler.in] = Array(conditions.delete(:handler))
+          conditions[:locale.in]  = Array(conditions.delete(:locale))
+          where(conditions)
         end
 
         def resolver(options={})
