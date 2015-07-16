@@ -26,6 +26,17 @@ describe Panoramic::Resolver do
       template = FactoryGirl.create(:database_template, :path => 'foo/example')
       resolver.find_templates('example', 'foo', false, details).first.should_not be_nil
     end
+
+    it "should lookup multiple templates" do
+      resolver = Panoramic::Resolver.using(DatabaseTemplate, :only => 'foo')
+      details = { :formats => [:html,:text], :locale => [:en], :handlers => [:erb] }
+      details[:formats].each do |format|
+        FactoryGirl.create(:database_template, :path => 'foo/example', :format => format.to_s)
+      end
+      templates = resolver.find_templates('example', 'foo', false, details)
+      templates.length.should be >= 2
+      templates.map(&:formats).flatten.uniq.should eq([:html, :text])
+    end
   end
 end
 

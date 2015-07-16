@@ -77,6 +77,12 @@ end
 This helps reducing the number of database requests, if Rails for example tries to look
 for layouts per controller.
 
+### ActionMailer
+
+```ruby
+class MyEmail < ActionMailer::Base
+  prepend_view_path TemplateStorage.resolver
+```
 
 ## Documentation
 Need more help? Check out ```spec/dummy/```, you'll find a *dummy* rails app I used to make tests ;-)
