@@ -92,9 +92,7 @@ Enter Panoramic gem path, run ```bundle install``` to install development and te
 
 
 ## Todo
-### Short term
-* make orm specs DRY to reuse them with different orms
-* add, at least, Mongoid and DataMapper bindings
+
 ### Long term
 * add generators
 

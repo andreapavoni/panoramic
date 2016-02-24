@@ -1,5 +1,0 @@
-source :rubygems
-
-gem "mongoid", "~> 3.0.0"
-
-gemspec :path => '../'

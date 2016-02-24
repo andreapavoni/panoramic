@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe FooController do
+describe FooController, type: :controller do
   include Capybara::DSL
   render_views
 
@@ -10,8 +10,8 @@ describe FooController do
 
       visit '/foo/default_layout'
 
-      response.should render_template("foo/default_layout" )
-      page.body.should match(/something here in the body of the page: 4/)
+      expect(response).to render_template("foo/default_layout" )
+      expect(page.body).to match(/something here in the body of the page: 4/)
     end
 
     it "a custom layout" do
@@ -20,10 +20,10 @@ describe FooController do
 
       visit '/foo/custom_layout'
 
-      response.should render_template("layouts/custom" )
-      response.should render_template("foo/custom_layout" )
-      page.body.should match(/This is a layout with body:/)
-      page.body.should match(/something here in the body of the page:/)
+      expect(response).to render_template("layouts/custom" )
+      expect(response).to render_template("foo/custom_layout" )
+      expect(page.body).to match(/This is a layout with body:/)
+      expect(page.body).to match(/something here in the body of the page:/)
     end
   end
 end
