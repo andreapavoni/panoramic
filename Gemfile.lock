@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     panoramic (0.0.7)
-      rails (>= 5.1.5)
+      rails (>= 4.2.0)
       rails-controller-testing
 
 GEM
