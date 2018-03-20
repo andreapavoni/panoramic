@@ -10,9 +10,9 @@ Gem::Specification.new do |s|
   s.summary     = %q{Stores rails views on database}
   s.description = %q{Stores rails views on database}
 
-  s.add_dependency 'rails', ">= 5.1.5"
+  s.add_dependency "rails", ">= 5.1.5"
+  s.add_dependency "rails-controller-testing"
   s.add_development_dependency "capybara", "~> 2.5.0"
-  s.add_development_dependency "rails-controller-testing"
   s.add_development_dependency "factory_girl"
   s.add_development_dependency "simplecov"
   s.add_development_dependency "sqlite3"
