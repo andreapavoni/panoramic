@@ -13,7 +13,7 @@ module Panoramic
         :format  => normalize_array(details[:formats]),
         :handler => normalize_array(details[:handlers]),
         :partial => partial || false
-      }
+      }.merge(details[:additional_criteria].presence || {})
 
       @@model.find_model_templates(conditions).map do |record|
         initialize_template(record)
