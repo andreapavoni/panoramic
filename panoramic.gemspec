@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.description = %q{A gem to store Rails views on database}
   s.license     = 'MIT'
 
-  s.add_runtime_dependency 'rails', '~> 3'
+  s.add_runtime_dependency 'rails', '~> 4'
   s.add_development_dependency 'rails-controller-testing', '~> 0'
   s.add_development_dependency 'capybara', '~> 2.5', '>= 2.5.0'
   s.add_development_dependency 'factory_girl', '~> 0'
