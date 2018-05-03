@@ -7,8 +7,9 @@ module Panoramic
     def find_templates(name, prefix, partial, details, key=nil, locals=[])
       return [] if @@resolver_options[:only] && !@@resolver_options[:only].include?(prefix)
 
+      path = build_path(name, prefix)
       conditions = {
-        :path    => build_path(name, prefix),
+        :path    => path,
         :locale  => [normalize_array(details[:locale]).first, nil],
         :format  => normalize_array(details[:formats]),
         :handler => normalize_array(details[:handlers]),
@@ -16,6 +17,7 @@ module Panoramic
       }.merge(details[:additional_criteria].presence || {})
 
       @@model.find_model_templates(conditions).map do |record|
+        Rails.logger.debug "Rendering template from database: #{path} (#{record.format})"
         initialize_template(record)
       end
     end
