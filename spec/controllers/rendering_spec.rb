@@ -6,7 +6,7 @@ describe FooController, type: :controller do
 
   context "renders views fetched from database with" do
     it "a basic template" do
-      FactoryGirl.create(:database_template, :path => 'foo/default_layout')
+      FactoryBot.create(:database_template, :path => 'foo/default_layout')
 
       visit '/foo/default_layout'
 
@@ -15,8 +15,8 @@ describe FooController, type: :controller do
     end
 
     it "a custom layout" do
-      FactoryGirl.create(:database_template, :path => 'foo/custom_layout')
-      FactoryGirl.create(:database_template, :path => 'layouts/custom', :body => 'This is a layout with body: <%= yield %>')
+      FactoryBot.create(:database_template, :path => 'foo/custom_layout')
+      FactoryBot.create(:database_template, :path => 'layouts/custom', :body => 'This is a layout with body: <%= yield %>')
 
       visit '/foo/custom_layout'
 

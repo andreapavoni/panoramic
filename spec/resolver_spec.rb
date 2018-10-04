@@ -5,13 +5,13 @@ describe Panoramic::Resolver do
 
   context ".find_templates" do
     it "should lookup templates for given params" do
-      template = FactoryGirl.create(:database_template, :path => 'foo/example')
+      template = FactoryBot.create(:database_template, :path => 'foo/example')
       details = { :formats => [:html], :locale => [:en], :handlers => [:erb] }
       expect(resolver.find_templates('example', 'foo', false, details).first).to_not be_nil
     end
 
     it "should lookup locale agnostic templates for given params" do
-      template = FactoryGirl.create(:database_template, :path => 'foo/example', :locale => nil)
+      template = FactoryBot.create(:database_template, :path => 'foo/example', :locale => nil)
       details = { :formats => [:html], :locale => [:en], :handlers => [:erb] }
       expect(resolver.find_templates('example', 'foo', false, details).first).to_not be_nil
     end
@@ -20,10 +20,10 @@ describe Panoramic::Resolver do
       resolver = Panoramic::Resolver.using(DatabaseTemplate, :only => 'foo')
       details = { :formats => [:html], :locale => [:en], :handlers => [:erb] }
 
-      template = FactoryGirl.create(:database_template, :path => 'bar/example')
+      template = FactoryBot.create(:database_template, :path => 'bar/example')
       expect(resolver.find_templates('example', 'bar', false, details).first).to be_nil
 
-      template = FactoryGirl.create(:database_template, :path => 'foo/example')
+      template = FactoryBot.create(:database_template, :path => 'foo/example')
       expect(resolver.find_templates('example', 'foo', false, details).first).to_not be_nil
     end
 
@@ -31,7 +31,7 @@ describe Panoramic::Resolver do
       resolver = Panoramic::Resolver.using(DatabaseTemplate, :only => 'foo')
       details = { :formats => [:html,:text], :locale => [:en], :handlers => [:erb] }
       details[:formats].each do |format|
-        FactoryGirl.create(:database_template, :path => 'foo/example', :format => format.to_s)
+        FactoryBot.create(:database_template, :path => 'foo/example', :format => format.to_s)
       end
       templates = resolver.find_templates('example', 'foo', false, details)
       expect(templates.length).to be >= 2
@@ -60,7 +60,7 @@ describe_private Panoramic::Resolver, '(private methods)' do
   end
 
   context "#initialize_template" do
-    let(:template) { FactoryGirl.create :database_template }
+    let(:template) { FactoryBot.create :database_template }
 
     it "initializes an ActionView::Template object" do
       expect(resolver.initialize_template(template)).to be_a(ActionView::Template)
