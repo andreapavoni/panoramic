@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Panoramic::Orm::ActiveRecord, type: :model do
-  let(:template) { FactoryGirl.build :database_template }
+  let(:template) { FactoryBot.build :database_template }
 
   context "validations" do
     it "has body present" do
@@ -55,7 +55,7 @@ describe Panoramic::Orm::ActiveRecord, type: :model do
       resolver = DatabaseTemplate.resolver
 
       cache_key = Object.new
-      db_template = FactoryGirl.create(:database_template, :path => 'foo/some_list', :body => 'Listing something')
+      db_template = FactoryBot.create(:database_template, :path => 'foo/some_list', :body => 'Listing something')
 
       details   = { :formats => [:html], :locale => [:en], :handlers => [:erb] }
 

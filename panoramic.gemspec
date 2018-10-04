@@ -11,12 +11,12 @@ Gem::Specification.new do |s|
   s.description = %q{A gem to store Rails views on database}
   s.license     = 'MIT'
 
-  s.add_runtime_dependency 'rails', '~> 4'
-  s.add_development_dependency 'rails-controller-testing', '~> 0'
+  s.add_runtime_dependency 'rails', '>= 4.2.0'
+  s.add_development_dependency 'rails-controller-testing'
   s.add_development_dependency 'capybara', '~> 2.5', '>= 2.5.0'
-  s.add_development_dependency 'factory_girl', '~> 0'
-  s.add_development_dependency "simplecov", '~> 0'
-  s.add_development_dependency "sqlite3", '~> 0'
+  s.add_development_dependency 'factory_bot'
+  s.add_development_dependency "simplecov"
+  s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails", '~> 3.0'
 
   s.files         = `git ls-files`.split("\n")
