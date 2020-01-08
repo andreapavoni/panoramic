@@ -38,7 +38,7 @@ module Panoramic
       handler = ActionView::Template.registered_template_handler(record.handler)
 
       details = {
-        :format => Mime[record.format],
+        :format => Mime[record.format].to_sym,
         :updated_at => record.updated_at,
         :virtual_path => virtual_path(record.path, record.partial)
       }
