@@ -37,13 +37,10 @@ module Panoramic
       identifier = "#{record.class} - #{record.id} - #{record.path.inspect}"
       handler = ActionView::Template.registered_template_handler(record.handler)
 
-      details = {
-        :format => Mime[record.format].to_sym,
-        :updated_at => record.updated_at,
-        :virtual_path => virtual_path(record.path, record.partial)
-      }
-
-      ActionView::Template.new(source, identifier, handler, details)
+      ActionView::Template.new(source, identifier, handler,
+                               :locals => [],
+                               :format => Mime[record.format].to_sym,
+                               :virtual_path => virtual_path(record.path, record.partial))
     end
 
     # Build path with eventual prefix
