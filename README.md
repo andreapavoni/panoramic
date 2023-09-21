@@ -83,6 +83,17 @@ for layouts per controller.
 class MyEmail < ActionMailer::Base
   prepend_view_path TemplateStorage.resolver
 ```
+Using prepend_view_path/append_view_path you are stuck to the current context (e.g. the method calling "mail").
+If you want to dynamically change the path depending on a certain variable, call the prepend_view_path/append_view_path inside the method's context with an additional path variable.
+This could be useful, if you want to use only one method for sending different templates depending on the template.path .
+
+```ruby
+class MyEmail < ActionMailer::Base
+
+  def method_that_sets_resolver_path
+    prepend_view_path TemplateStorage.resolver(:path => model.path)
+  end
+```
 
 ## Documentation
 Need more help? Check out ```spec/dummy/```, you'll find a *dummy* rails app I used to make tests ;-)
